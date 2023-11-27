@@ -14,7 +14,7 @@ $conn->select_db($dbname);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['username'];
     $pwd = $_POST['pwd'];
-    $insertSQL = "INSERT INTO accounts (username, password) VALUES ('$name', $pwd')";
+    $insertSQL = "INSERT INTO accounts (username, password) VALUES ('$name', '$pwd')";
 
     if ($conn->query($insertSQL) === TRUE) {
         echo "New record added successfully";

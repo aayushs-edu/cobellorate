@@ -14,10 +14,15 @@ $conn->select_db($dbname);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['username'];
     $pwd = $_POST['pwd'];
-    $scanSQL = ""; // query here to scan the db for the username and password submitted 
+    $scanSQL = "SELECT * FROM accounts WHERE username = '$name' AND password = '$pwd'"; // query here to scan the db for the username and password submitted 
+    $result = $conn->query($scanSQL);
 
-    if ($conn->query($scanSQL) === TRUE) {
-        echo ""; // logic here executed based on the username and password found
+    if ($result) {
+        if ($result->num_rows > 0) {
+            echo "Login successful!";
+        } else {
+            echo "Invalid username or password";
+        }
     } else {
         echo "Error: " . $scanSQL . "<br>" . $conn->error;
     }

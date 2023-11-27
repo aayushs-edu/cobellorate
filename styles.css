@@ -1,0 +1,18 @@
+.p1
+{
+    position: absolute;
+    font-size: 30px;
+    text-align: center;
+    top: 10%;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+}
+
+.c2
+{
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+    position: absolute;
+    top: 70%;
+    left: 48.5%
+}

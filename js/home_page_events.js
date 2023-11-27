@@ -3,6 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const start_button = document.getElementById('start_b');
 
     start_button.addEventListener('click', () => {
-        window.location.href = 'login.html';
+        window.location.href = 'make_account_page.html';
     })
 });

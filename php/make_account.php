@@ -12,9 +12,10 @@ if ($conn->connect_error) {
 $conn->select_db($dbname);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
     $name = $_POST['username'];
     $pwd = $_POST['pwd'];
-    $insertSQL = "INSERT INTO accounts (username, password) VALUES ('$name', '$pwd')";
+    $insertSQL = "INSERT INTO accounts (username, email, password) VALUES ('$name', '$email', '$pwd')";
 
     if ($conn->query($insertSQL) === TRUE) {
         echo "New record added successfully";

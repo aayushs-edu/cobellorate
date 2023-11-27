@@ -36,3 +36,19 @@
     left: 48.5%;
     top: 80%;
 }
+
+header h1{
+
+    font-size: 35px;
+    font-weight: 400;
+    background-image: linear-gradient(to right, #1e075c 0%, #ffffff 50%);
+    font-family: 'Roboto', sans-serif;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+
+}
+
+body {
+    background-image: linear-gradient(to right, white 0%, rgb(21, 100, 153) 50%,rgb(3, 40, 88) 80%);
+}

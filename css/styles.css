@@ -41,7 +41,7 @@ header h1{
 
     font-size: 35px;
     font-weight: 400;
-    background-image: linear-gradient(to right, #1e075c 0%, #ffffff 50%);
+    background-image: linear-gradient(to right, #00a2ff 0%, #ffffff 70%);
     font-family: 'Roboto', sans-serif;
     color: transparent;
     background-clip: text;
@@ -49,6 +49,15 @@ header h1{
 
 }
 
-body {
-    background-image: linear-gradient(to right, white 0%, rgb(21, 100, 153) 50%,rgb(3, 40, 88) 80%);
+
+.center-hr {
+    display: flex;
+    justify-content: center;
+    color: #fcfcfc;
+    background-color: #ffffff;
+    height: 2px;
+}
+  
+.center-hr hr {
+    width: 50%;
 }

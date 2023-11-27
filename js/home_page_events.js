@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const p1 = document.getElementById('p1');
-    const start_button = document.getElementById('start_b');
+    const make_account_b = document.getElementById('make_account_b');
+    const login_b = document.getElementById('login_b')
 
-    start_button.addEventListener('click', () => {
+    make_account_b.addEventListener('click', () => {
         window.location.href = 'make_account_page.html';
-    })
+    });
+
+    login_b.addEventListener('click', () => {
+        window.location.href = 'login_page.html';
+    });
 });

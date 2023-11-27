@@ -1,7 +1,7 @@
 .p1
 {
     position: absolute;
-    font-size: 30px;
+    font-size: 45px;
     text-align: center;
     top: 10%;
     width: 100%;
@@ -10,9 +10,29 @@
 
 .c2
 {
-    font-size: 20px;
+    font-size: 30px;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: 70%;
-    left: 48.5%
+    top: 20%;
+    text-align: center;
+    width: 100%;
+}
+
+.c3
+{
+    font-size: 17;
+    font-family: 'Arial', sans-serif;
+    position: absolute;
+    width: 120x;
+    margin-left: 50%;
+    top: 75%;
+}
+
+.c4
+{
+    font-size: 17;
+    font-family: 'Arial', sans-serif;
+    position: absolute;
+    left: 48.5%;
+    top: 80%;
 }

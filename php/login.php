@@ -23,13 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result) {
         if ($result->num_rows > 0) {
             echo "Login successful!";
-            $session = new Session($name, $pwd); 
+            $session = new Session($name, $pwd);
         } else {
             echo "Invalid username or password";
         }
     } else {
         echo "Error: " . $scanSQL . "<br>" . $conn->error;
     }
+    
 }
 $conn->close();
 ?>

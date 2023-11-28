@@ -1,5 +1,7 @@
 <?php
 
+include 'login.php';
+
 $servername = "localhost";
 $username = "root";
 $password = "dummypassword";

@@ -1,9 +1,11 @@
 <?php
 session_start();
 
+$env = parse_ini_file('.env');
+
 $servername = "localhost";
-$username = "root";
-$password = "dummypassword";
+$username = $env["SQL_USER"];
+$password = $env["SQL_PASS"];
 $dbname = "group-project-manager";
 
 $conn = new mysqli($servername, $username, $password);

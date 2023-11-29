@@ -1,5 +1,5 @@
 <?php
-include 'login.php';
+session_start();
 
 $servername = "localhost";
 $username = "root";
@@ -15,8 +15,14 @@ $conn->select_db($dbname);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['project-name'];
     $desc = $_POST['project-desc'];
-    $user = $session->get_user();
-    $insertSQL = "INSERT INTO projects (name, owner, description, num_files) VALUES ('$name', '$user', '$desc', 0)";
+    $user = NULL;
+    if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+    } else {
+        echo "Log in first";
+        exit;
+    }
+    $insertSQL = "INSERT INTO projects (name, creator, description, numFiles) VALUES ('$name', '$user', '$desc', 0)";
 
     if ($conn->query($insertSQL) === TRUE) {
         echo "New record added successfully";

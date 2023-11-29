@@ -1,5 +1,4 @@
 <?php
-include 'session.php';
 
 $servername = "localhost";
 $username = "root";
@@ -12,7 +11,7 @@ if ($conn->connect_error) {
 }
 $conn->select_db($dbname);
 
-$session = NULL;
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['username'];
@@ -23,7 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result) {
         if ($result->num_rows > 0) {
             echo "Login successful!";
-            $session = new Session($name, $pwd);
+            session_start();
+            $_SESSION['user'] = $name;
+            header("Location: ../dashboard_page.html");
         } else {
             echo "Invalid username or password";
         }

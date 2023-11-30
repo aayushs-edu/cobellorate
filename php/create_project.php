@@ -1,6 +1,16 @@
 <?php
 session_start();
 
+function generateRandomHex() {
+    $length = 32; // 64 char, each char => 4 bit
+    $randBytes = random_bytes($length / 2);
+    $hexString = bin2hex($randBytes);
+    return $hexString;
+}
+
+$projectHashedID = generateRandomHex();
+$fileHashedID = generateRandomHex();
+
 $servername = "localhost";
 $username = "root";
 $password = "dummypassword";
@@ -22,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Log in first";
         exit;
     }
-    $insertSQL = "INSERT INTO projects (name, creator, description, numFiles) VALUES ('$name', '$user', '$desc', 0)";
+    $insertSQL = "INSERT INTO projects (projectID, name, creator, description, numFiles) VALUES ('$projectHashedID', '$name', '$user', '$desc', 0)";
 
     if ($conn->query($insertSQL) === TRUE) {
         echo "New record added successfully";

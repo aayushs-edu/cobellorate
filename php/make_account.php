@@ -15,8 +15,9 @@ $conn->select_db($dbname);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $name = $_POST['username'];
-    $pwd = $_POST['pwd'];
-    $insertSQL = "INSERT INTO accounts (username, email, password) VALUES ('$name', '$email', '$pwd')";
+    $raw_pwd = $_POST['pwd'];
+    $hashed_pwd = hash('sha256', $raw_pwd); #hash the passwords using sha256 for security
+    $insertSQL = "INSERT INTO accounts (username, email, password) VALUES ('$name', '$email', '$hashed_pwd')";
 
     if ($conn->query($insertSQL) === TRUE) {
         echo "New record added successfully";

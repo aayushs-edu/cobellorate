@@ -42,8 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $insertSQL . "<br>" . $conn->error;
     }
 }
+$sessionUser = $_SESSION['user'];
 // fetch projects from the database
-$selectProjectsSQL = "SELECT name FROM projects";
+$selectProjectsSQL = "SELECT name AND owner FROM projects WHERE name = '$sessionUser'";
 $result = $conn->query($selectProjectsSQL);
 $projects = [];
 

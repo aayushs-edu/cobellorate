@@ -26,8 +26,9 @@ if(isset($_POST['id'])) {
     $conn->select_db($dbname);
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $fileBLOB = $_FILES["fileInput"]["name"];
-        $insertSQL = "INSERT into files (fileID, fileContent, projectID) VALUES ('$hashedFileID', '$fileBLOB', '$currentProjectID')";
+        $fileBLOB = file_get_contents($_FILES["fileInput"]["tmp_name"]);
+        $fileName = $_FILES["fileInput"]["name"];
+        $insertSQL = "INSERT into files (fileID, fileName, fileContent, projectID) VALUES ('$hashedFileID', '$fileName', '$fileBLOB', '$currentProjectID')";
     
         if ($conn->query($insertSQL) === TRUE) {
             echo "New record added successfully";

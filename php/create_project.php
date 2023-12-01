@@ -11,7 +11,6 @@ function generateRandomHex() {
 $projectRawID = generateRandomHex();
 $fileRawID = generateRandomHex();
 $projectHashedID = hash('sha256', $projectRawID);
-$fileHashedID = hash('sha256', $fileRawID);
 
 $servername = "localhost";
 $username = "root";

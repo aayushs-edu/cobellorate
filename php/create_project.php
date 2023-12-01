@@ -42,4 +42,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $insertSQL . "<br>" . $conn->error;
     }
 }
+$conn->close();
 ?>

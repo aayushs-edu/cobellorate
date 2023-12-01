@@ -1,3 +1,23 @@
+<?php
+    session_start();
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "dummypassword";
+    $dbname = "group-project-manager";
+
+    $conn = new mysqli($servername, $username, $password);
+    if ($conn->connect_error) {
+        die("Connection error: " . $conn->connect_error);
+    }
+    $conn->select_db($dbname);
+
+    $sessionUser = $_SESSION['user'];
+    // fetch projects from the database
+    $selectProjectsSQL = "SELECT projectID, name, creator FROM projects WHERE name = '$sessionUser'";
+    $result = $conn->query($selectProjectsSQL);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +29,7 @@
 
 </head>
 <body>
+    
     <nav class="navbar navbar-dark bg-dark justify-content-between">
         <a class="navbar-brand" style="margin:auto">Dashboard</a>
         <ul class="navbar-nav" style="margin-right: 15px">
@@ -23,7 +44,13 @@
             <div class="projects">
                 <h2>Projects</h2>
                 <div id="project-list">
-                    
+                    <?php
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<a href='/php/projects.php?id={$row['projectID']}'>{$row['name']}</a>\n";
+                            }
+                        }
+                    ?>
                 </div>
                 <button id="new-project-button" type="button" class="btn btn-primary" onclick="location.href='project_creation_page.html'">New Project</button>
             </div>
@@ -52,6 +79,9 @@
             </div>
         </div>
     </section>
+    <?php
+        $conn->close();
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../js/projects_update.js"></script>

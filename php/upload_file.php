@@ -8,9 +8,8 @@ function generateRandomHex() {
     return $hexString;
 }
 
-$projectRawID = generateRandomHex();
 $fileRawID = generateRandomHex();
-$projectHashedID = hash('sha256', $projectRawID);
+$fileHashedID = hash('sha256', $fileRawID);
 
 $servername = "localhost";
 $username = "root";
@@ -24,22 +23,9 @@ if ($conn->connect_error) {
 $conn->select_db($dbname);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['project-name'];
+    $file = $_POST['file'];
     $desc = $_POST['project-desc'];
-    $user = NULL;
-    if (isset($_SESSION['user'])) {
-        $user = $_SESSION['user'];
-    } else {
-        echo "Log in first";
-        exit;
-    }
-    $insertSQL = "INSERT INTO projects (projectID, name, creator, description, numFiles) VALUES ('$projectHashedID', '$name', '$user', '$desc', 0)";
-
-    if ($conn->query($insertSQL) === TRUE) {
-        echo "New record added successfully";
-    } else {
-        echo "Error: " . $insertSQL . "<br>" . $conn->error;
-    }
+    $insertSQL = "";
 }
 $conn->close();
 ?>

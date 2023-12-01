@@ -1,10 +1,25 @@
 <?php
     if(isset($_GET['id'])) {
+        session_start();
         $currentProjectID = $_GET['id'];
-    }
-    else{
-        header('Location: ../dashboard_page.html');
-    }
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "dummypassword";
+        $dbname = "group-project-manager";
+
+        $conn = new mysqli($servername, $username, $password);
+        if ($conn->connect_error) {
+            die("Connection error: " . $conn->connect_error);
+        }
+        $conn->select_db($dbname);
+
+        $sessionUser = $_SESSION['user'];
+        $selectFilesSQL = "SELECT fileContent FROM files WHERE projectID = '$currentProjectID'";
+        $result = $conn->query($selectFilesSQL);
+        } else {
+            header('Location: ../dashboard_page.html');
+        }
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +38,15 @@
             <?php echo "<input type='hidden' name='id' value={$currentProjectID}/>" ?>
             <button type="submit">Upload</button>
         </form>
+        <?php
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_array($result)) {
+                    echo "<p style='text-decoration: none'>{$row['fileContent']}</p>\n";
+                }
+            }
+        ?>
         <div id="response"></div>
     </div>
-
-    <script src="app.js"></script>
 </body>
 </html>
 

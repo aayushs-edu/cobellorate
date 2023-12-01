@@ -18,10 +18,10 @@
 <body>
     <div class="container">
         <h1>Project Dashboard</h1>
-        <?php
-        echo "<form action='upload_file.php' method='post' id='uploadForm' enctype='multipart/form-data'>"; ?>
-            <input type="file" name="file" id="fileInput" />
-            <button type="button" onclick="uploadFile()">Upload</button>
+        <form action='upload_file.php' method='post' id='uploadForm' enctype='multipart/form-data'>
+            <input type="file" name="fileInput" id="fileInput" />
+            <?php echo "<input type='hidden' name='id' value={$currentProjectID}/>" ?>
+            <button type="submit">Upload</button>
         </form>
         <div id="response"></div>
     </div>

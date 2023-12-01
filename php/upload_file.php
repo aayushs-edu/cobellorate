@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if(isset($_GET['id'])) {
-    $currentProjectID = $_GET['id'];
+if(isset($_POST['id'])) {
+    $currentProjectID = $_POST['id'];
     
     function generateRandomHex() {
         $length = 32; // 64 char, each char => 4 bit
@@ -26,17 +26,18 @@ if(isset($_GET['id'])) {
     $conn->select_db($dbname);
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $fileBLOB = $_POST['fileInput'];
-        $insertSQL = "INSERT into files (fileID, fileContent, projectID) VALUES ('$hashedFileID', '$fileBLOB', '$currentProjectID'";
+        $fileBLOB = $_FILES["fileInput"]["name"];
+        $insertSQL = "INSERT into files (fileID, fileContent, projectID) VALUES ('$hashedFileID', '$fileBLOB', '$currentProjectID')";
     
         if ($conn->query($insertSQL) === TRUE) {
             echo "New record added successfully";
         } else {
             echo "Error: " . $insertSQL . "<br>" . $conn->error;
         }
-    } else {
-        header('Location: ../dashboard_page.html');
-    }
+    } 
+else {
+    header('Location: ../dashboard_page.html');
+}
 $conn->close();
 }
 ?>

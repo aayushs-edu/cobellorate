@@ -5,6 +5,7 @@ body {
 .navbar {
     margin-bottom: 20px;
 }
+  
 
 button.green-button {
     padding: 10px 16px;
@@ -22,6 +23,7 @@ button.green-button:hover{
 h1.glow{
     text-shadow:1px 1px 10px rgb(116,60,124), 1px 1px 5px rgb(116,60,124);
 }
+
 
 .p1
 {

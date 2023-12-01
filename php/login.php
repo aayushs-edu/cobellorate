@@ -11,8 +11,6 @@ if ($conn->connect_error) {
 }
 $conn->select_db($dbname);
 
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['username'];
     $raw_pwd = $_POST['pwd'];

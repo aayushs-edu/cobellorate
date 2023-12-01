@@ -1,0 +1,53 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+button.blue-button {
+    padding: 6px 120px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    background-color: rgb(116,60,124);
+    border-color: rgb(116,60,124);
+    border-style: solid;
+    border-radius: 15px;
+}
+
+button.blue-button:hover{
+  cursor: pointer;
+  background: transparent;
+}
+
+input.highlight:focus{
+    outline: 2px solid rgb(116,60,124);
+}
+
+a.make_account {
+    color: rgb(167, 106, 175);
+    text-decoration: none;
+}
+
+a.make_account:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}

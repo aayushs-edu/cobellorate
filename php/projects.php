@@ -18,7 +18,8 @@
 <body>
     <div class="container">
         <h1>Project Dashboard</h1>
-        <form id="uploadForm" enctype="multipart/form-data">
+        <?php
+        echo "<form action='upload_file.php' method='post' id='uploadForm' enctype='multipart/form-data'>"; ?>
             <input type="file" name="file" id="fileInput" />
             <button type="button" onclick="uploadFile()">Upload</button>
         </form>

@@ -1,3 +1,24 @@
+body {
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+button.green-button {
+    padding: 10px 16px;
+    background-color: rgb(116,60,124);
+    border-color: rgb(116,60,124);
+    border-style: solid;
+    border-radius: 15px;
+}
+
+button.green-button:hover{
+  cursor: pointer;
+  background: transparent;
+}
+
 .p1
 {
     position: absolute;

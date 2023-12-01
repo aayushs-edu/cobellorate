@@ -19,6 +19,10 @@ button.green-button:hover{
   background: transparent;
 }
 
+h1.glow{
+    text-shadow:1px 1px 10px rgb(116,60,124), 1px 1px 5px rgb(116,60,124);
+}
+
 .p1
 {
     position: absolute;

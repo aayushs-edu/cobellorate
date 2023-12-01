@@ -47,7 +47,7 @@
                     <?php
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result)) {
-                                echo "<a href='/php/projects.php?id={$row['projectID']}'>{$row['name']}</a>\n";
+                                echo "<a style='text-decoration: none' href='/php/projects.php?id={$row['projectID']}'>{$row['name']}</a>\n";
                             }
                         }
                     ?>

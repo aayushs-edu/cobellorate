@@ -1,3 +1,3 @@
 ### Collaborative Group Project Manager for Students at Bellarmine College Preperatory 
 #### Allows students to sync and deposit documents into a shared directory, enabling them to enhance logistic efficiency and workplace productivity
-##### Written by Aayush Sharma and Elliott Barringer
+##### Written by Elliott Barringer, Aayush Sharma, and Shaunik Musukula

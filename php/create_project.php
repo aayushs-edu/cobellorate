@@ -42,5 +42,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $insertSQL . "<br>" . $conn->error;
     }
 }
+// fetch projects from the database
+$selectProjectsSQL = "SELECT name FROM projects";
+$result = $conn->query($selectProjectsSQL);
+$projects = [];
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $projects[] = $row['name'];
+    }
+}
+// output the projects array as JSON
+echo json_encode($projects);
 $conn->close();
 ?>

@@ -25,6 +25,16 @@ $conn->select_db($dbname);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file = $_POST['file'];
     $desc = $_POST['project-desc'];
+
+    // get associated project ID
+    $sessionUser = $_SESSION['user'];
+    $getProjectID = "SELECT projectID FROM projects WHERE name = '$sessionUser'";
+    $result = $conn->query($getProjectID);
+    if (mysqli_num_rows($result) > 0) {
+        $row = $result->fetch_assoc();
+        $projectID = 
+    }
+
     $insertSQL = "";
 }
 $conn->close();

@@ -25,7 +25,7 @@ $conn->select_db($dbname);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file = $_POST['file'];
     $desc = $_POST['project-desc'];
-    $insertSQL = ""
+    $insertSQL = "";
 }
 $conn->close();
 ?>

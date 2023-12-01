@@ -14,13 +14,15 @@ $conn->select_db($dbname);
 
 $sessionUser = $_SESSION['user'];
 // fetch projects from the database
-$selectProjectsSQL = "SELECT name, creator FROM projects WHERE name = '$sessionUser'";
+$selectProjectsSQL = "SELECT projectID, name, creator FROM projects WHERE name = '$sessionUser'";
 $result = $conn->query($selectProjectsSQL);
-$projects = [];
+$projects = array(array());
+$i = 0;
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $projects[] = $row['name'];
+        $projects[$i][0] = $row['name'];
+        $projects[$i][1] = $row['projectID'];
     }
 }
 // output the projects array as JSON

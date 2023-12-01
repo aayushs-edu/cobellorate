@@ -2,4 +2,6 @@ Create Project
     - Projects table: ProjectID INT PRIMARY KEY, name, description, owner, num_files
     - Files table: FileID INT PRIMARY KEY, FileContent LONGBLOB, ProjectID
 
-    - File ID = 
+URL
+    - when a user enters the project, we need to be able to access the ID of the current project
+    - 

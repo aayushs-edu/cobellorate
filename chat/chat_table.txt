@@ -1,0 +1,13 @@
+# changes to the sql DB that we can incorporate to manage chat functionality
+
+# for creating the table
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    senderID INT,
+    receiverID INT,
+    message TEXT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+# example of fetching a message
+SELECT * FROM messages WHERE (senderID = <senderID> AND receiverID = <receiverID>) ORDER BY timestamp;

@@ -20,10 +20,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_pwd = hash('sha256', $raw_pwd); #hash the passwords using sha256 for security
     $insertSQL = "INSERT INTO accounts (username, email, password) VALUES ('$name', '$email', '$hashed_pwd')";
 
-    if ($conn->query($insertSQL) === TRUE) {
-        echo "New record added successfully";
+    $scanSQL = "SELECT * FROM accounts WHERE username = '$name'";
+    $result = $conn->query($scanSQL);
+
+    if ($result->num_rows > 0) {
+        echo 'Username already exists. Please choose a different username.';
     } else {
-        echo "Error: " . $insertSQL . "<br>" . $conn->error;
+        if ($conn->query($insertSQL) === TRUE) {
+            echo "New record added successfully";
+        } else {
+            echo "Error: " . $insertSQL . "<br>" . $conn->error;
+        }
     }
 }
 $conn->close();

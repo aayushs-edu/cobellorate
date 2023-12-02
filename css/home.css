@@ -20,17 +20,17 @@ button.green-button:hover{
   background: transparent;
 }
 
-.slider-fast {
+.slider-slow {
     animation-duration: 2s;
-    animation-name: slide-right;
+    animation-name: slide;
 }
 
 .slider-fast {
     animation-duration: 3s;
-    animation-name: slide-right;
+    animation-name: slide;
 }
 
-@keyframes slide-right {
+@keyframes slide {
     from {
         margin-top: 50%;
     }

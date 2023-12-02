@@ -3,7 +3,11 @@ body {
   height: 100%;
 }
 
-
+.navbar-nav.center2 {
+  float:none;
+  margin:0 auto;
+  text-align: center;
+}
 
 body {
   display: flex;

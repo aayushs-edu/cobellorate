@@ -63,6 +63,11 @@ button.blue-button:hover{
   outline:2px solid rgb(116,60,124);
 }
 
+.navbar-nav.center2 {
+  float:none;
+  margin:0 auto;
+  text-align: center;
+}
 
 input::-webkit-input-placeholder {
   color: #555;

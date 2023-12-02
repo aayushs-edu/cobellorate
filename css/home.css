@@ -107,3 +107,9 @@ header h1{
 .center-hr hr {
     width: 50%;
 }
+
+.navbar-nav.center2 {
+    float:none;
+    margin:0 auto;
+    text-align: center;
+}

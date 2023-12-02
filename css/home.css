@@ -1,3 +1,49 @@
+body {
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+button.green-button {
+    padding: 10px 16px;
+    background-color: rgb(116,60,124);
+    border-color: rgb(116,60,124);
+    border-style: solid;
+    border-radius: 15px;
+}
+
+button.green-button:hover{
+  cursor: pointer;
+  background: transparent;
+}
+
+.slider-slow {
+    animation-duration: 2s;
+    animation-name: slide;
+}
+
+.slider-fast {
+    animation-duration: 3s;
+    animation-name: slide;
+}
+
+@keyframes slide {
+    from {
+        margin-top: 50%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+
+h1.glow {
+    text-shadow:1px 1px 10px rgb(116,60,124), 1px 1px 10px rgb(116,60,124);
+}
+
+
 .p1
 {
     position: absolute;
@@ -60,4 +106,10 @@ header h1{
   
 .center-hr hr {
     width: 50%;
+}
+
+.navbar-nav.center2 {
+    float:none;
+    margin:0 auto;
+    text-align: center;
 }

@@ -1,0 +1,112 @@
+html,
+body {
+  height: 100%;
+}
+
+
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+button.blue-button {
+    padding: 6px 110px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    background-color: rgb(116,60,124);
+    border-color: rgb(116,60,124);
+    border-style: solid;
+    border-radius: 15px;
+}
+
+button.blue-button:hover{
+  cursor: pointer;
+  background: transparent;
+}
+
+.h1 {
+  left: 50%;
+  bottom: 50%;
+}
+
+.input {
+  background-color: transparent;
+  border: rgb(116,60,124);
+  border-bottom: 1px solid #555;
+  color: white;
+  box-sizing: border-box;
+  font-size: 18px;
+  left: 17%;
+  bottom: 50%;
+  margin: -25px 0 0 -100px;
+  padding: 10px 0px;
+  position: relative;
+  top: 50%;
+  width: 290px;
+  outline: transparent;
+}
+
+
+.input.highlight:focus {
+  outline:2px solid rgb(116,60,124);
+}
+
+.navbar-nav.center2 {
+  float:none;
+  margin:0 auto;
+  text-align: center;
+}
+
+input::-webkit-input-placeholder {
+  color: #555;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: #555;
+  outline: none;
+}
+
+.input:focus+.underline {
+  transform: scale(1);
+  outline: none;
+}
+
+.underline {
+  background-color: rgb(116,60,124);
+  display: inline-block;
+  height: 2px;
+  right: 0px;
+  position: absolute;
+  top: 98%;
+  -webkit-transform: scale(0, 1);
+  transform: scale(0, 1);
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+  width: 290px;
+}
+
+a.make_account {
+    color: rgb(167, 106, 175);
+    text-decoration: none;
+}
+
+a.make_account:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}

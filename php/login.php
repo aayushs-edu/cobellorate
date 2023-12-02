@@ -1,8 +1,10 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "dummypassword";
+$env = parse_ini_file('.env');
+
+$servername = $env["SQL_SERVER"];
+$username = $env["SQL_USERNAME"];
+$password = $env["SQL_PASSWORD"];
 $dbname = "group-project-manager";
 
 $conn = new mysqli($servername, $username, $password);
@@ -23,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Login successful!";
             session_start();
             $_SESSION['user'] = $name;
-            header("Location: ../html/dashboard_page.html");
+            header("Location: ../dashboard_page.php");
         } else {
             echo "Invalid username or password";
         }

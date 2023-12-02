@@ -11,11 +11,11 @@ function generateRandomHex() {
 $projectRawID = generateRandomHex();
 $fileRawID = generateRandomHex();
 $projectHashedID = hash('sha256', $projectRawID);
-$fileHashedID = hash('sha256', $fileRawID);
 
-$servername = "localhost";
-$username = "root";
-$password = "dummypassword";
+$env = parse_ini_file('.env');
+$servername = $env["SQL_SERVER"];
+$username = $env["SQL_USERNAME"];
+$password = $env["SQL_PASSWORD"];
 $dbname = "group-project-manager";
 
 $conn = new mysqli($servername, $username, $password);
@@ -42,4 +42,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $insertSQL . "<br>" . $conn->error;
     }
 }
+$conn->close();
 ?>

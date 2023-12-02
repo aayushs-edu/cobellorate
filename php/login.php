@@ -1,8 +1,10 @@
 <?php
 
-$servername = $_ENV["SQL_SERVER"];;
-$username = $_ENV["SQL_USERNAME"];
-$password = $_ENV["SQL_PASSWORD"];
+$env = parse_ini_file('.env');
+
+$servername = $env["SQL_SERVER"];
+$username = $env["SQL_USERNAME"];
+$password = $env["SQL_PASSWORD"];
 $dbname = "group-project-manager";
 
 $conn = new mysqli($servername, $username, $password);

@@ -19,7 +19,7 @@
         $selectFilesSQL = "SELECT fileContent FROM files WHERE projectID = '$currentProjectID'";
         $result = $conn->query($selectFilesSQL);
         } else {
-            header('Location: ../dashboard_page.html');
+            header('Location: dashboard_page.html');
         }
 ?>
 

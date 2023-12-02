@@ -16,7 +16,7 @@
 
     $sessionUser = $_SESSION['user'];
     // fetch projects from the database
-    $selectProjectsSQL = "SELECT projectID, name, creator FROM projects WHERE name = '$sessionUser'";
+    $selectProjectsSQL = "SELECT projectID, name, owner FROM projects WHERE name = '$sessionUser'";
     $result = $conn->query($selectProjectsSQL);
 ?>
 

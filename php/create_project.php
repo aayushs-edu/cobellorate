@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Log in first";
         exit;
     }
-    $insertSQL = "INSERT INTO projects (projectID, name, creator, description, numFiles) VALUES ('$projectHashedID', '$name', '$user', '$desc', 0)";
+    $insertSQL = "INSERT INTO projects (projectID, name, owner, description, numFiles) VALUES ('$projectHashedID', '$name', '$user', '$desc', 0)";
 
     if ($conn->query($insertSQL) === TRUE) {
         echo "New record added successfully";

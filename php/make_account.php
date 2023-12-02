@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($result) {
         if ($result->num_rows > 0) {
-            header("Location: ../make_account_page.html");
             echo "An account with that username already exists.";
             die();
         }
@@ -33,13 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $scanSQL . "<br>" . $conn->error;
     }
     
-    # $insertSQL = "INSERT INTO accounts (username, email, password) VALUES ('$name', '$email', '$hashed_pwd')";
+    $insertSQL = "INSERT INTO accounts (username, email, password) VALUES ('$name', '$email', '$hashed_pwd')";
 
-    # if ($conn->query($insertSQL) === TRUE) {
-    #     echo "New record added successfully";
-    # } else {
-    #     echo "Error: " . $insertSQL . "<br>" . $conn->error;
-    # }
+    if ($conn->query($insertSQL) === TRUE) {
+        echo "New record added successfully";
+    } else {
+        echo "Error: " . $insertSQL . "<br>" . $conn->error;
+    }
 }
 $conn->close();
 ?>

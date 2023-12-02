@@ -1,11 +1,11 @@
 body {
     padding-bottom: 20px;
+    overflow: hidden;
 }
 
 .navbar {
     margin-bottom: 20px;
 }
-  
 
 button.green-button {
     padding: 10px 16px;
@@ -20,8 +20,27 @@ button.green-button:hover{
   background: transparent;
 }
 
-h1.glow{
-    text-shadow:1px 1px 10px rgb(116,60,124), 1px 1px 5px rgb(116,60,124);
+.slider-fast {
+    animation-duration: 2s;
+    animation-name: slide-right;
+}
+
+.slider-fast {
+    animation-duration: 3s;
+    animation-name: slide-right;
+}
+
+@keyframes slide-right {
+    from {
+        margin-top: 50%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+
+h1.glow {
+    text-shadow:1px 1px 10px rgb(116,60,124), 1px 1px 10px rgb(116,60,124);
 }
 
 

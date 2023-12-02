@@ -3,9 +3,9 @@
         session_start();
         $currentProjectID = $_GET['id'];
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "dummypassword";
+        $servername = $_ENV["SQL_SERVER"];
+        $username = $_ENV["SQL_USERNAME"];
+        $password = $_ENV["SQL_PASSWORD"];
         $dbname = "group-project-manager";
 
         $conn = new mysqli($servername, $username, $password);

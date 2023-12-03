@@ -26,14 +26,17 @@ if ($conn->connect_error) {
 $conn->select_db($dbname);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $data = file_get_contents($_FILES['fileInput']['tmp_name']);
-    $insertSQL = "INSERT into files (fileID, fileContent, projectID) VALUES ('TEST', 'test', 'test')";
-
-    if ($conn->query($insertSQL) === TRUE) {
-        echo "New record added successfully";
-    } else {
-        echo "Error: " . $insertSQL . "<br>" . $conn->error;
-    }
+    $fileName = $_FILES['fileInput']['name'];
+    $fileTmpName = $_FILES['fileInput']['tmp_name'];
+    $fileContent =  file_get_contents($fileTmpName);
+    $fileSize = $_FILES['fileInput']['size'];
+    $sql = "INSERT into files (fileID, `fileName`, fileContent, projectID) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssbs", $hashedFileID, $fileName, $fileContent, $currentProjectID);
+    $stmt->send_long_data(2, file_get_contents($fileTmpName)); 
+    $stmt->execute();
+    echo "File successfully inserted";
+    
 }
 $conn->close();
 

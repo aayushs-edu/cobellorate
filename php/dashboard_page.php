@@ -16,7 +16,7 @@
 
     $sessionUser = $_SESSION['user'];
     // fetch projects from the database
-    $selectProjectsSQL = "SELECT projectID, name, owner FROM projects WHERE name = '$sessionUser'";
+    $selectProjectsSQL = "SELECT projectID, name, owner FROM projects WHERE owner = '$sessionUser'";
     $result = $conn->query($selectProjectsSQL);
 ?>
 
@@ -49,12 +49,12 @@
                     <?php
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result)) {
-                                echo "<a style='text-decoration: none' href='/php/projects.php?id={$row['projectID']}'>{$row['name']}</a>\n";
+                                echo "<a style='text-decoration: none' href='/php/projects.php?id={$row['projectID']}'>{$row['name']}</a><br>\n";
                             }
                         }
                     ?>
                 </div>
-                <button id="new-project-button" type="button" class="btn btn-primary" onclick="location.href='project_creation_page.html'">New Project</button>
+                <button id="new-project-button" type="button" class="btn btn-primary" onclick="location.href='../project_creation_page.html'">New Project</button>
             </div>
 
             <div style="position: absolute; bottom: 0">

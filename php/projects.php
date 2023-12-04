@@ -68,7 +68,7 @@
 <body>
     <div class="container">
         <h1>Project Dashboard</h1>
-        <form action="./upload_file.php" method="post" id="uploadForm" enctype="multipart/form-data">
+        <form action="upload_file.php" method="post" id="uploadForm" enctype="multipart/form-data">
             <input type="file" name="fileInput" id="fileInput" />
             <?php echo "<input type='hidden' name='id' value={$currentProjectID}/>" ?>
             <input type="submit">Upload</input>
@@ -84,7 +84,7 @@
                             if(!file_exists('./Files')) mkdir('./Files');
                             $filePath = './Files/' . $row['fileName'];
                             if(!file_exists($filePath)) file_put_contents($filePath, $row['fileContent']);
-                            echo "<button class=\"btn btn-primary\" onclick=\"location.href='Files/{$row['fileName']}';\">{$row['fileName']}</button>\n";
+                            echo "<button class=\"btn btn-primary\" onclick=\"location.href='Files/{$row['fileName']}';\">{$row['fileName']}</button><br>\n";
                         }
                     }
                 ?>

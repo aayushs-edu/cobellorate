@@ -25,6 +25,9 @@ if ($conn->connect_error) {
 $conn->select_db($dbname);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $userID = $_SESSION['userID'];
+
     $name = $_POST['project-name'];
     $desc = $_POST['project-desc'];
     $user = NULL;
@@ -35,6 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
     $insertSQL = "INSERT INTO projects (projectID, name, owner, description, numFiles) VALUES ('$projectHashedID', '$name', '$user', '$desc', 0)";
+
+    if ($conn->query($insertSQL) === TRUE) {
+        echo "New record added successfully";
+    } else {
+        echo "Error: " . $insertSQL . "<br>" . $conn->error;
+    }
+    
+    $insertSQL = "INSERT INTO collaborators (projectID, userID) VALUES ('$projectHashedID', '$userID')";
 
     if ($conn->query($insertSQL) === TRUE) {
         echo "New record added successfully";

@@ -47,7 +47,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin: 10px;
-            flex: 1;
+            flex: 2.5;
         }
 
         .feed {
@@ -84,7 +84,7 @@
                             if(!file_exists('./Files')) mkdir('./Files');
                             $filePath = './Files/' . $row['fileName'];
                             if(!file_exists($filePath)) file_put_contents($filePath, $row['fileContent']);
-                            echo "<button class=\"btn btn-primary\" onclick=\"location.href='Files/{$row['fileName']}';\">{$row['fileName']}</button><br>\n";
+                            echo "<li><img src=\"../images/word-icon.jpg\" width=\"50px\" height=\"50px\"><button class=\"btn btn-outline-primary\" onclick=\"location.href='Files/{$row['fileName']}';\">{$row['fileName']}</button></li><br>\n";
                         }
                     }
                 ?>

@@ -13,6 +13,16 @@ if ($conn->connect_error) {
 }
 $conn->select_db($dbname);
 
+function generateRandomHex() {
+    $length = 32; // 64 char, each char => 4 bit
+    $randBytes = random_bytes($length / 2);
+    $hexString = bin2hex($randBytes);
+    return $hexString;
+}
+
+$userID = generateRandomHex();
+$hashedUserID = hash('sha256', $userID);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $name = $_POST['username'];
@@ -32,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $scanSQL . "<br>" . $conn->error;
     }
     
-    $insertSQL = "INSERT INTO accounts (username, email, password) VALUES ('$name', '$email', '$hashed_pwd')";
+    $insertSQL = "INSERT INTO accounts (userID, email, username, password) VALUES ('$hashedUserID', '$email', '$name', '$hashed_pwd')";
 
     if ($conn->query($insertSQL) === TRUE) {
         echo "New record added successfully";

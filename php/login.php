@@ -22,9 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result) {
         if ($result->num_rows > 0) {
+            $row = $result->fetch_row();
+
             echo "Login successful!";
             session_start();
             $_SESSION['user'] = $name;
+            $_SESSION['userID'] = $row[0];
             header("Location: dashboard_page.php");
         } else {
             echo "Invalid username or password";

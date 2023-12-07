@@ -6,7 +6,6 @@ import sys
 import canvasapi
 import datetime
 from pytz import timezone
-import unicodedata
 print("<p>Starting...</p>")
 
 def convert_due_date(assignment):
@@ -52,7 +51,7 @@ try:
 
 
     for course, assignments in assignment_dict.items():
-        print(f"<h2>{course}</h2>")
+        print(f"<h2>{course.name}</h2>")
         for assignment in assignments:
             if assignment.due_at:
                 due_date = convert_due_date(assignment)

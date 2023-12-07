@@ -18,6 +18,10 @@ $url .= $_SERVER["HTTP_HOST"];
 $api_key = $_ENV["CANVAS_KEY"];
 $base_url = $_ENV["CANVAS_BASE_URL"];
 
+// API request
 $api_link = $url . "/scraper/scraper.py?url=" . $base_url . "&auth=" . $api_key;
+// data stores
 $api_data = file_get_contents($api_link);
+
+// return data
 echo $api_data;

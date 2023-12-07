@@ -31,7 +31,7 @@
           
         </div>
       </nav>
-    <div style="text-align: center; transform: translate(0%, 90%);">
+    <div style="text-align: center; color: white;">
         <div class="slider-slow">
           <?php
             include "scraper/scraper.php";

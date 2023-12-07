@@ -6,7 +6,6 @@ import sys
 import canvasapi
 import datetime
 from pytz import timezone
-print("<p>Starting...</p>")
 
 def convert_due_date(assignment):
     raw_due_date = datetime.datetime.strptime(assignment.due_at,"%Y-%m-%dT%H:%M:%SZ").astimezone(timezone("America/Los_Angeles"))
@@ -16,6 +15,7 @@ def convert_due_date(assignment):
 def filter_assignments(course):
     unfiltered = course.get_assignments(bucket="upcoming")
     filtered = []
+    unfiltered = [i for i in unfiltered]
     for assignment in unfiltered:
         if datetime.datetime.now() < datetime.datetime.strptime(assignment.due_at,"%Y-%m-%dT%H:%M:%SZ"):
             filtered.append(assignment)
@@ -59,7 +59,6 @@ try:
             else:
                 print(f"<p>Assignment: {accept_accents(assignment.name)}, NO DUE DATE</p>")
 
+# NOTE: used for deugging
 except Exception as e:
     print(f"<h1>ERROR: {e}</h1>")
-
-print("<p>Finished</p>")

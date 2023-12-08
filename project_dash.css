@@ -5,67 +5,37 @@
   margin:0;
 }
 
-.dashboard-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+*{
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
+body {
+  background-color:#2a2e36;
+  font-family: sans-serif;
+  height: 90vh;
+  display: flex;
+
+}
 
 .dashboard {
+  margin-left: 10%;
+  flex: 1;
+  width: 100%;
+}
+
+.container {
   display: flex;
-  flex: 1;
 }
 
-
-
-.left-panel {
-  background-color: #f0f0f0;
-}
-
-.right-panel {
-  background-color: #e0e0e0;
-}
-
-.main-content {
-  flex: 1;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-h2 {
-  color: #333;
-}
-
-
-.recent-activity {
-  border: 1px solid #ddd;
-  padding: 15px;
-}
-
-.activity-widget {
-  margin-bottom: 10px;
-}
-
-.widget-container {
-  display: flex; /* Use flexbox to arrange items horizontally */
-  background-color: #f0f0f0;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.widget-content {
-  flex: 1; /* The content takes up the available space */
-  padding: 10px;
-}
-
-.widget-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-right: 10px;
+.widget-column {
+  height: 100%;
+  width: 200px; /* Adjust the width as needed */
+  background-color: #f0f0f0; /* Adjust the background color as needed */
+  /* Add any additional styles for your widgets here */
 }
 
 .sidebar{
@@ -128,3 +98,44 @@ li p{
 }
 
 /* Add additional styling as needed */
+
+.panel{
+  float: left;
+  position: relative;
+  padding: 20px;
+  width: 20%;
+  height: 90%;
+  background: #3c414c;
+  color: #8146e8bd;
+  box-shadow: 0 50px 30px -15px #00000020;
+  border-radius: 25px;
+  margin: 5px;
+}
+
+.feed{
+  float: left;
+  position: relative;
+  padding: 20px;
+  width: 50%;
+  height: 90%;
+  background: #3c414c;
+  color: #8146e8bd;
+  box-shadow: 0 50px 30px -15px #00000020;
+  border-radius: 25px;
+  margin: 5px;
+}
+
+.panel-content h4 {
+  font-size: 30px;
+  font-weight: 300px;
+}
+
+h1 {
+  color: whitesmoke;
+  font-size: 50px;
+  font-weight: 200px;
+}
+
+h3 {
+  color:#bdb8b8
+}

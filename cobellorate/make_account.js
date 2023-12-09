@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 const env = require('dotenv').config().parsed;
 const servername = env.SQL_SERVER;
@@ -35,7 +36,7 @@ function generateRandomHex() {
   return hexString;
 }
 
-app.post('/', function (req, res) {
+app.post('/makeAccountForm', function (req, res) {
   const email = req.body.email;
   const name = req.body.username;
   const rawPwd = req.body.pwd;

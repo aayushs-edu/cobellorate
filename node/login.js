@@ -6,9 +6,7 @@ const { hash } = require('crypto');
 
 // salt and hash the ID
 const originalID = process.env.sessionIDCookie;
-const salt = crypto.randomBytes(16).toString('hex');
-const saltedID = originalID + salt;
-const hashedID = crypto.createHash('sha256').update(saltedID).digest('hex');
+const hashedID = crypto.createHash('sha256').update(originalID).digest('hex');
 
 const app = express();
 const port = 3000;

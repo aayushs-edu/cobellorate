@@ -6,10 +6,14 @@ const env = require('dotenv').config().parsed;
 const app = express();
 const port = 3000;
 
+// salt and hash the id
+const originalID = env.sessionIDCookie;
+const hashedID = crypto.createHash('sha256').update(originalID).digest('hex');
+
 app.use(express.static('public'));
 app.use(session({
-    secret: 'your-secret-key',
-    resave: false,
+    secret: hashedID,
+    resave: true,
     saveUninitialized: true
 }));
 

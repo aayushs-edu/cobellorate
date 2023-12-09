@@ -50,8 +50,13 @@ app.post('/login', (req, res) => {
             const user = results[0];
             req.session.user = username;
             req.session.userID = user.id;
-
-            return res.send('login successful')
+            res.redirect('/dashboard.js');
+        } else {
+            // invalid username
         }
     });
+});
+
+app.listen(port, () => {
+    console.log('server is running');
 });

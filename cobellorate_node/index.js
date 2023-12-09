@@ -4,10 +4,12 @@ const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000; // Set the port
+const DIR = path.join(__dirname, '..')
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(DIR));
 app.get('/', (req, res) => {
-    res.send('Hello, World!'); 
+    res.sendFile(path.join(DIR, 'home_page.html'));
+
 });
 
 app.listen(port, () => {

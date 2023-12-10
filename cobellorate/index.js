@@ -73,7 +73,24 @@ app.post('/signup', (req, res) => {
             res.send('error executing query');
             return;
         }
-        res.send('new record added succesfully');
+        if (result && result.length > 0) {
+            res.send('an account with that username already exists');
+            return;
+        }
+
+        const userID = generateRandomHex();
+        const hashedUserID = crypto.createHash('sha256').update(userID).digest('hex');
+
+        // insert query
+        const insertSQL = `INSERT INTO accounts (userID, email, username, password) VALUES ('${hashedUserID}', '${email}', '${name}', '${hashedPwd}')`;
+        connection.query(insertSQL, function (err, res) {
+            if (err) {
+                console.error('error executing query: ' + err.stack);
+                res.send('error executing query');
+                return;
+            }
+            res.send('new record added succesfully');
+        });
     });
 });
 

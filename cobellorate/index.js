@@ -18,16 +18,28 @@ app.use(express.urlencoded({
     extended: true,
 }));
 
+<<<<<<< Updated upstream
 app.use(cors());
 
 app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/js', express.static(__dirname + 'public/js'));
 app.use('/img', express.static(__dirname + 'public/img'));
+=======
+app.use('/css', express.static(__dirname + 'public/css'))
+app.use('/js', express.static(__dirname + 'public/js'))
+app.use('/img', express.static(__dirname + 'public/img'))
+>>>>>>> Stashed changes
 
 app.set('views', './views')
 app.set('view engine', 'ejs');
 
+const userRoute = require('./routes/users')
+app.use('/users', userRoute);
+
+app.use(cors());
+
 app.get('/', (req, res) => {
+<<<<<<< Updated upstream
     res.render('home_page');
 });
 
@@ -76,6 +88,10 @@ app.post('/signup', (req, res) => {
         res.send('new record added succesfully');
     });
 });
+=======
+    res.render('home');
+})
+>>>>>>> Stashed changes
 
 app.listen(port, () => {
     console.info(`Listening on port ${port}`);

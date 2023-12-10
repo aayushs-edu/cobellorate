@@ -24,6 +24,22 @@ body {
   margin: auto;
 }
 
+input[type=submit] {
+  padding: 6px 110px;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  background-color: rgb(116,60,124);
+  border-color: rgb(116,60,124);
+  border-style: solid;
+  border-radius: 15px;
+}
+
+input[type=submit]:hover{
+  cursor: pointer;
+  background: transparent;
+}
+
 button.blue-button {
     padding: 6px 110px;
     text-align: center;

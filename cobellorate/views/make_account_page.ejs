@@ -8,8 +8,9 @@
           <title>Sign Up</title>
           
       <link href="css/login_styles.css" rel="stylesheet">
+      <link href="css/signup_form.css" rel="stylesheet">
     </head>
-    <body>
+    <body style="background-color: #212529">
         <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Navigation Bar" style="position:absolute; top:0; left:0;">
             <div class="container-fluid">
               <a class="navbar-brand" href="home_page.html">Cobellorate</a>
@@ -29,9 +30,8 @@
               </div>
             </div>
           </nav>
-            <link href="css/signup_form.css" rel="stylesheet">
-          <body class="text-center" style="background-color: #212529">
-          <form style="border: 5px solid; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 10px;" action="cobellorate/make_account.js" method="post">
+          <div class="text-center">
+          <form action="/signup" method="POST" style="border: 5px solid; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 10px;">
             <h1 class="h3 mb-3 fw-normal" style="color: white; font-size: 40px"><b>Create your account</b></h1>
             <div class="form-floating">
                 <input class="input" placeholder="Email Address" id="email" type="email" name="email"></input>
@@ -56,9 +56,10 @@
                 <a class="make_account" href="login_page.html">Login</a>
               </label>
             </div>
-            <button class="blue-button" style="transform: translate(0%, -3%)"><b>Create Account</b></button>
+            <input type="submit" value="Sign up">
+            
           </form>
-          </body>
+        </div>  
           <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark justify-content-center" style="bottom: -1%; background-color: #5a5a5a;">
             <div class="container-fluid">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

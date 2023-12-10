@@ -33,8 +33,9 @@ app.use('/users', userRoute);
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home_page');
 });
+
 
 app.listen(port, () => {
     console.info(`Listening on port ${port}`);

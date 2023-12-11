@@ -19,6 +19,33 @@ router.get('/file_upload', (req, res) => {
 })
 
 // handling for file upload
-router.post('/upload', (req, res))
+router.post('/upload', (req, res) => {
+    const file = req.body.file;
+    const connection = mysql.createConnection({
+        host: servername,
+        user: username,
+        password: password,
+        database: dbname
+    });
+    connection.connect(function (err) {
+        if (err) {
+            console.log('error connection to sql database: ' + err.stack);
+            return;
+        }
+        console.log('connected to the database as id ' + connection.threadId);
+    })
+
+    // for hashing file id
+    function generateRandomHex() {
+        const length = 32;
+        const randBytes = crypto.randomBytes(length / 2);
+        const hexString = randBytes.toString('hex');
+        return hexString;
+    }
+    const rawFileID = generateRandomHex();
+    const hashedFileID = crypto.createHash('sha256').update(rawFileID).digest('hex');
+    // sql query
+    const insertSQL = 
+}); 
 
 module.exports = router;

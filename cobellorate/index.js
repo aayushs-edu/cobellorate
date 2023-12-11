@@ -26,8 +26,9 @@ app.use('/img', express.static(__dirname + 'public/img'));
 
 app.set('views', './views')
 app.set('view engine', 'ejs');
-
+// file contains routes that the app needs to use
 const userRoute = require('./routes/users')
+// for url 
 app.use('/users', userRoute);
 
 app.use(cors());

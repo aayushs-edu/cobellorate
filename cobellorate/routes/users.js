@@ -8,15 +8,15 @@ const servername = env.SQL_SERVER;
 const username = env.SQL_USERNAME;
 const password = env.SQL_PASSWORD;
 const dbname = env.SQL_DB;
-
+// render signup.ejs page
 router.get('/signup', (req, res) => {
   res.render('signup');
 })
-
+// render login.ejs page
 router.get('/login', (req, res) => {
   res.render('login');
 })
-
+// signup handling
 router.post('/signup', (req, res) => {
   // from the forms
   const email = req.body.email;
@@ -73,5 +73,9 @@ router.post('/signup', (req, res) => {
     res.send('new record added succesfully');
   });
 })
+// login handling
+router.post('/login', (req, res) => {
+  
+});
 
 module.exports = router;

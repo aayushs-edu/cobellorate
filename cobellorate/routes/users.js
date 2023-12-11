@@ -16,6 +16,10 @@ router.get('/signup', (req, res) => {
 router.get('/login', (req, res) => {
   res.render('login');
 })
+//render welcome.ejs page
+router.get('/welcome', (req, res) => {
+  res.render('welcome');
+})
 // signup handling
 router.post('/signup', (req, res) => {
   // from the forms
@@ -103,19 +107,23 @@ router.post('/login', (req, res) => {
   const hashedPwd = crypto.createHash('sha256').update(rawPwd).digest('hex');
   // sql query
   const scanSQL = `SELECT * FROM accounts WHERE username = '${name}'`;
-  connection.query(scanSQL, function (err, res) {
+  connection.query(scanSQL, function (err, result) {
     if (err) {
       console.error('error executing query: ' + err.stack);
       console.log('error executing query');
       return;
     }
-    if (res && res.length > 0) {
-      const user = res[0];
+    if (result && result.length > 0) {
+      const user = result[0];
       // update session user
       req.session.user = user;
       console.log(req.session.user);
+      // redirect user to session route
+      res.redirect('welcome')
     }
   });
 });
+
+
 
 module.exports = router;

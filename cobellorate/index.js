@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
 const mysql = require('mysql2');
 const env = require('dotenv').config().parsed;
@@ -11,11 +12,19 @@ const servername = env.SQL_SERVER;
 const username = env.SQL_USERNAME;
 const password = env.SQL_PASSWORD;
 const dbname = env.SQL_DB;
+const secret_key = env.SESSION_SECRET;
 
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({ 
     extended: true,
+}));
+
+// session muiddleware
+app.use(session({
+    secret: secret_key,
+    resave: false,
+    saveUninitialized: true
 }));
 
 app.use(cors());

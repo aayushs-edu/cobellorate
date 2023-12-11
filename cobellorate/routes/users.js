@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const crypto = require('crypto');
 const router = express.Router();
-
+const session = require('express-session')
 const env = require('dotenv').config().parsed;
 const servername = env.SQL_SERVER;
 const username = env.SQL_USERNAME;
@@ -48,13 +48,13 @@ router.post('/signup', (req, res) => {
   const hashedPwd = crypto.createHash('sha256').update(rawPwd).digest('hex');
   // sql query
   const scanSQL = `SELECT * FROM accounts WHERE username = '${name}'`;
-  connection.query(scanSQL, function (err, result) {
+  connection.query(scanSQL, function (err, res) {
       if (err) {
           console.error('error executing query: ' + err.stack);
           res.send('error executing query');
           return;
       }
-      if (result && result.length > 0) {
+      if (res && res.length > 0) {
         res.send('an account with that username already exists');
         return;
       }
@@ -70,12 +70,52 @@ router.post('/signup', (req, res) => {
         res.send('error executing query');
         return;
     }
-    res.send('new record added succesfully');
+    console.log('new record added sucesfully');
   });
 })
 // login handling
 router.post('/login', (req, res) => {
-  
+  // from the forms
+  const name = req.body.username;
+  const rawPwd = req.body.pwd;
+
+  const connection = mysql.createConnection({
+    host: servername,
+    user: username, 
+    password: password, 
+    database: dbname
+  });
+  connection.connect(function (err) {
+    if (err) {
+      console.log('error connecting to sql database: ' + err.stack);
+      return;
+    }
+    console.log('connected to database as id ' + connection.threadId);
+  });
+  // for hashing the pwd
+  function generateRandomHex() {
+    const length = 32;
+    const randBytes = crypto.randomBytes(length / 2);
+    const hexString = randBytes.toString('hex');
+    return hexString;
+  }
+  // hash the pwd
+  const hashedPwd = crypto.createHash('sha256').update(rawPwd).digest('hex');
+  // sql query
+  const scanSQL = `SELECT * FROM accounts WHERE username = '${name}'`;
+  connection.query(scanSQL, function (err, res) {
+    if (err) {
+      console.error('error executing query: ' + err.stack);
+      console.log('error executing query');
+      return;
+    }
+    if (res && res.length > 0) {
+      const user = res[0];
+      // update session user
+      req.session.user = user;
+      console.log(req.session.user);
+    }
+  });
 });
 
 module.exports = router;

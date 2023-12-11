@@ -1,0 +1,2 @@
+cd C:\Users\ellio\OneDrive\Documents\GitHub\group-project-manager\cobellorate
+npm start

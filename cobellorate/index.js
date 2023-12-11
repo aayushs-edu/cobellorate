@@ -40,6 +40,9 @@ const userRoute = require('./routes/users')
 // for url 
 app.use('/users', userRoute);
 
+const sessionRoute = require('./routes/session')
+app.use('/session', sessionRoute);
+
 app.use(cors());
 
 app.get('/', (req, res) => {

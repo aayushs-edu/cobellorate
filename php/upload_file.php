@@ -36,7 +36,6 @@
         $stmt->send_long_data(2, file_get_contents($fileTmpName)); 
         $stmt->execute();
         echo "File successfully inserted";
-        
     }
     $conn->close();
 

@@ -119,7 +119,7 @@ router.post('/login', (req, res) => {
       req.session.user = user;
       console.log(req.session.user);
       // redirect user to session route
-      res.redirect('welcome')
+      res.redirect('../session/dashboard')
     }
   });
 });

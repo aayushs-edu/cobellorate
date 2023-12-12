@@ -23,6 +23,11 @@ router.get('/dashboard', (req, res) => {
     }
 })
 
+// render create project page
+router.get('/new_project', (req, res) => {
+    res.render('new_project');
+})
+
 // render file upload page
 router.get('/file_upload', (req, res) => {
     res.render('file_upload');

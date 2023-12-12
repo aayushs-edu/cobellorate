@@ -74,7 +74,7 @@ router.post('/signup', (req, res) => {
         res.send('error executing query');
         return;
     }
-    console.log('new record added sucesfully');
+    console.log('new account added sucesfully');
   });
 })
 // login handling

@@ -18,7 +18,5 @@ router.get('/file_upload', (req, res) => {
     res.render('file_upload');
 })
 
-// handling for file upload
-router.post('/upload', (req, res))
 
 module.exports = router;

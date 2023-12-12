@@ -20,10 +20,10 @@ app.use(express.urlencoded({
     extended: true,
 }));
 
-// session muiddleware
+// session middleware
 app.use(session({
     secret: secret_key,
-    resave: false,
+    resave: true,
     saveUninitialized: true
 }));
 

@@ -63,11 +63,11 @@ router.post('/new_project', (req, res) => {
     // get current session user as owner
     const owner = req.session.user;
     // sql query                
-    const insertSQL = 'INSERT INTO projects (projectID, name, description, owner, numFiles) VALUES (?, ?, ?, ?, ?)';
-    const values = [hashedProjectID, project_name, project_desc, owner, 0];
+    const insertSQL = 'INSERT INTO projects (projectID, name, description, owner) VALUES (?, ?, ?, ?)';
+    const values = [hashedProjectID, project_name, project_desc, owner];
     connection.query(insertSQL, values, function (err, result) {
         if (err) {
-            console.error('error executing query: ' + err.stack);
+            console.error('error executing query: ' + err.message);
             console.log('error executing query');
             return;
         }

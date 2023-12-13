@@ -14,7 +14,7 @@ router.get('/signup', (req, res) => {
 })
 // render login.ejs page
 router.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', {error: ''});
 })
 //render welcome.ejs page
 router.get('/welcome', (req, res) => {
@@ -96,30 +96,29 @@ router.post('/login', (req, res) => {
     }
     console.log('connected to database as id ' + connection.threadId);
   });
-  // for hashing the pwd
-  function generateRandomHex() {
-    const length = 32;
-    const randBytes = crypto.randomBytes(length / 2);
-    const hexString = randBytes.toString('hex');
-    return hexString;
-  }
   // hash the pwd
   const hashedPwd = crypto.createHash('sha256').update(rawPwd).digest('hex');
   // sql query
-  const scanSQL = `SELECT * FROM accounts WHERE username = '${name}'`;
+  const scanSQL = `SELECT * FROM accounts WHERE username = '${name}' and password = '${hashedPwd}';`;
   connection.query(scanSQL, function (err, result) {
     if (err) {
       console.error('error executing query: ' + err.stack);
       console.log('error executing query');
+      res.render('login');
       return;
     }
-    if (result && result.length > 0) {
-      const user = result[0];
-      // update session user
-      req.session.user = user;
-      console.log(req.session.user);
-      // redirect user to session route
-      res.redirect('../session/dashboard')
+    if (result) {
+      if(result.length > 0) {
+        const user = result[0];
+        // update session user
+        req.session.user = user;
+        console.log(req.session.user);
+        // redirect user to session route
+        res.redirect('../session/dashboard')
+      }
+      else {
+        res.render('login', {error: 'Account does not exist'});
+      }
     }
   });
 });

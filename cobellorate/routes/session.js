@@ -18,14 +18,22 @@ router.use(session({
 
 router.get('/dashboard', (req, res) => {
     // check if user session is set
-    if (req.session && req.session.user){
-        res.render('dashboard', {session: req.session });
+    if (req.session && req.session.user) {
+        userId = req.query.userId
+        req.session.userId = userId;
+        userName = req.session.user; 
+        res.render('dashboard', {session: req.session, userId });
     }
 })
 
 // render create project page
 router.get('/new_project', (req, res) => {
-    res.render('new_project');
+    // check if user session is set
+    console.log(req.session.user);
+    if (req.session && req.session.user) {
+        const userId = req.session.userId //access users id
+        res.render('new_project', {session: req.session, userId});
+    }
 })
 
 // render file upload page
@@ -35,8 +43,10 @@ router.get('/file_upload', (req, res) => {
 
 // handle project creation
 router.post('/new_project', (req, res) => {
-    const project_name = req.body.name.toString();
-    const project_desc = req.body.desc.toString();
+    const owner = req.session.user;
+    console.log(owner);
+    const project_name = req.body.project_name;
+    const project_desc = req.body.description;
 
     function generateRandomHex() {
         const length = 32;
@@ -61,8 +71,13 @@ router.post('/new_project', (req, res) => {
         console.log('connected to database as id ' + connection.threadId);
     });
     // get current session user as owner
-    const owner = req.session.user;
-    // sql query                
+    //const owner = req.session.user;
+    //console.log(owner);
+    // sql query
+    console.log('hashedProjectID: ' + hashedProjectID + '\n');
+    console.log('project_name: ' + project_name + '\n');
+    console.log('project_desc: ' + project_desc + '\n');
+    console.log('owner: ' + owner + '\n');        
     const insertSQL = 'INSERT INTO projects (projectID, name, description, owner) VALUES (?, ?, ?, ?);';
     const values = [hashedProjectID, project_name, project_desc, owner];
     connection.query(insertSQL, values, function (err, result) {

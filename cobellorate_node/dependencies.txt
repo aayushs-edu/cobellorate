@@ -1,2 +1,0 @@
-# install all dependencies
-npm install express ejs mysql2 crypto body-parser dotenv

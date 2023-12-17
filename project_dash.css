@@ -1,0 +1,193 @@
+*,
+*:before,
+*:after{
+  padding: 0;
+  margin:0;
+}
+
+*{
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color:#2a2e36;
+  font-family: sans-serif;
+  height: 90vh;
+  display: flex;
+
+}
+
+.dashboard {
+  margin-left: 13%;
+  flex: 1;
+}
+
+.container {
+  display: flex;
+}
+
+.widget-column {
+  height: 100%;
+  width: 200px; /* Adjust the width as needed */
+  background-color: #f0f0f0; /* Adjust the background color as needed */
+  /* Add any additional styles for your widgets here */
+}
+
+.sidebar{
+  height: 100vh;
+  min-height: 500px;
+  width: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #16191e;
+  overflow: hidden;
+  transition: width 0.2s;
+}
+.sidebar:hover{
+  width: 170px;
+  overflow: visible;
+}
+img.logo{
+  width: 50px;
+  margin: 10px 0;
+}
+nav{
+  height: 60vh;
+  min-height: 300px;
+}
+ul{
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  list-style-type: none;
+}
+li a{
+  width: 165px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  text-decoration: none;
+  font-family: 'Poppins',sans-serif;
+  color: #cacaca;
+}
+li a:hover{
+  background-image: linear-gradient(
+      to right,
+      #6f2ae6 7px,
+      rgba(255,255,255,0.1) 7px
+  );
+  color: #ffffff;
+}
+
+li i.fas{
+  font-size: 20px;
+  text-align: right;
+}
+
+i.fas{
+  font-size: 40px;
+  text-align: right;
+}
+
+li p{
+  width: 75px;
+  font-size: 14px;
+  text-align: left;
+  letter-spacing: 0.3px;
+}
+
+/* Add additional styling as needed */
+
+.panel{
+  float: left;
+  position: relative;
+  padding: 20px;
+  width: 20%;
+  height: 90%;
+  background: #3c414c;
+  box-shadow: 0 50px 30px -15px #00000020;
+  border-radius: 25px;
+  margin: 5px;
+}
+
+.feed{
+  float: left;
+  position: relative;
+  padding: 20px;
+  width: 50%;
+  height: 90%;
+  background: #3c414c;
+  color: #8146e8bd;
+  box-shadow: 0 50px 30px -15px #00000020;
+  border-radius: 25px;
+  margin: 5px;
+}
+
+.panel-title {
+  font-size: 30px;
+  font-weight: 400px;
+  color: #b892fabd;
+}
+
+.widget {
+  float: top;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  height: 20%;
+  background: #939599;
+  color: #424242bd;
+  box-shadow: 0 50px 30px -15px #00000020;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+h1 {
+  color: whitesmoke;
+  font-size: 50px;
+  font-weight: 200px;
+}
+
+h3 {
+  color:#bdb8b8
+}
+
+.user-list {
+  display: flex;
+  width: 90%;
+  max-width: max-content;
+  flex-wrap: wrap;
+}
+
+.user {
+  color: white;
+  margin: 10px;
+  display: inline-block;
+}
+
+.file-list {
+  display: flex;
+  max-width: max-content;
+  flex-wrap: wrap;
+}
+
+.file {
+  color: white;
+  margin: 10px;
+  display: flex;
+  width: 80%;
+  align-items: center;
+  flex: 1;
+  text-decoration: underline;
+}
+
+.file i {
+  margin: 5px;
+}

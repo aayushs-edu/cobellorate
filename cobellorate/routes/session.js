@@ -32,6 +32,7 @@ router.get('/new_project', (req, res) => {
     console.log(req.session.user);
     if (req.session && req.session.user) {
         const userId = req.session.userId //access users id
+        console.log(userId)
         res.render('new_project', {session: req.session, userId});
     }
 })
@@ -43,11 +44,11 @@ router.get('/file_upload', (req, res) => {
 
 // handle project creation
 router.post('/new_project', (req, res) => {
-    const owner = req.session.user;
+    const owner = req.body.username;
     console.log(owner);
     const project_name = req.body.project_name;
     const project_desc = req.body.description;
-
+    
     function generateRandomHex() {
         const length = 32;
         const randBytes = crypto.randomBytes(length / 2);
@@ -74,6 +75,10 @@ router.post('/new_project', (req, res) => {
     //const owner = req.session.user;
     //console.log(owner);
     // sql query
+
+    // use the inputted username to fetch the userID
+    const fetchUserID = 'SELECT userID FROM accounts WHERE username'
+
     console.log('hashedProjectID: ' + hashedProjectID + '\n');
     console.log('project_name: ' + project_name + '\n');
     console.log('project_desc: ' + project_desc + '\n');

@@ -35,8 +35,8 @@ router.get('/file_upload', (req, res) => {
 
 // handle project creation
 router.post('/new_project', (req, res) => {
-    const project_name = req.body.name.toString();
-    const project_desc = req.body.desc.toString();
+    const project_name = req.body.name;
+    const project_desc = req.body.desc;
 
     function generateRandomHex() {
         const length = 32;
@@ -63,15 +63,18 @@ router.post('/new_project', (req, res) => {
     // get current session user as owner
     const owner = req.session.user;
     // sql query                
-    const insertSQL = 'INSERT INTO projects (projectID, name, description, owner) VALUES (?, ?, ?, ?);';
-    const values = [hashedProjectID, project_name, project_desc, owner];
-    connection.query(insertSQL, values, function (err, result) {
+    const insertSQL = `INSERT INTO projects VALUES ('${hashedProjectID}', '${project_name}', '${project_desc}', '${owner}', 0);`;
+    connection.query(insertSQL, function (err, result) {
         if (err) {
             console.error('error executing query: ' + err.message);
             console.log('error executing query');
+            res.render('new_project');
             return;
         }
-        console.log('new project succesfully added')
+        if(result) {
+            console.log('new project succesfully added');
+            res.render('dashboard', {session: req.session });
+        }
     });
 })
 module.exports = router;

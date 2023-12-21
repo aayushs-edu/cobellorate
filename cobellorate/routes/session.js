@@ -18,14 +18,23 @@ router.use(session({
 
 router.get('/dashboard', (req, res) => {
     // check if user session is set
-    if (req.session && req.session.user){
-        res.render('dashboard', {session: req.session });
+    if (req.session && req.session.user) {
+        userId = req.query.userId
+        req.session.userId = userId;
+        userName = req.session.user; 
+        res.render('dashboard', {session: req.session, userId });
     }
 })
 
 // render create project page
 router.get('/new_project', (req, res) => {
-    res.render('new_project');
+    // check if user session is set
+    console.log(req.session.user);
+    if (req.session && req.session.user) {
+        const userId = req.session.userId //access users id
+        console.log(userId)
+        res.render('new_project', {session: req.session, userId});
+    }
 })
 
 // render file upload page

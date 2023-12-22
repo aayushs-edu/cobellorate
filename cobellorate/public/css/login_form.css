@@ -49,15 +49,12 @@ input[type=submit]:hover{
   color: white;
   box-sizing: border-box;
   font-size: 18px;
-  left: 17%;
-  bottom: 50%;
-  margin: -25px 0 0 -100px;
   padding: 10px 0px;
   position: relative;
   top: 50%;
-  width: 290px;
   outline: transparent;
 }
+
 
 
 .input.highlight:focus {
@@ -95,7 +92,6 @@ input:focus::-webkit-input-placeholder {
   transform: scale(0, 1);
   -webkit-transition: all 0.5s linear;
   transition: all 0.5s linear;
-  width: 290px;
 }
 
 a.make_account {

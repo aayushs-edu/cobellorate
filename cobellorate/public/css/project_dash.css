@@ -113,7 +113,7 @@ li p{
   height: 90%;
   background: #3c414c;
   box-shadow: 0 50px 30px -15px #00000020;
-  border-radius: 25px;
+  border-radius: 10px;
   margin: 5px;
 }
 
@@ -126,7 +126,7 @@ li p{
   background: #3c414c;
   color: #8146e8bd;
   box-shadow: 0 50px 30px -15px #00000020;
-  border-radius: 25px;
+  border-radius: 10px;
   margin: 5px;
 }
 
@@ -161,7 +161,7 @@ h3 {
 
 .user-list {
   display: flex;
-  width: 90%;
+  width: 100%;
   max-width: max-content;
   flex-wrap: wrap;
 }
@@ -190,4 +190,21 @@ h3 {
 
 .file i {
   margin: 5px;
+}
+
+input[type=submit] {
+  padding: 6px 15px;
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  background-color: rgb(116,60,124);
+  border-color: rgb(116,60,124);
+  border-style: solid;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+input[type=submit]:hover{
+  cursor: pointer;
+  background: transparent;
 }

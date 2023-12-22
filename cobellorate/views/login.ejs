@@ -36,7 +36,7 @@
         
       <form style="border: 5px solid; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 10px;" action="./login" method="POST">
         <h1 class="h3 mb-3 fw-normal" style="color: white; font-size: 40px"><b>Welcome Back</b></h1>
-        <pre style="color: red"><%= error %></pre>
+        <pre style="color: red; position: relative;"><%= error %></pre>
         <div class="form-floating">
             <input class="input" placeholder="Username" id="user" type="text" name="username"></input>
             <span class="underline"></span>
@@ -49,6 +49,7 @@
             </div>
         <div class="checkbox mb-3">
           </div>
+          <br>
         <div class="checkbox mb-3">
           <label style="color: white"> Don't have an account?
             <a class="make_account" href="./signup">Sign Up</a>

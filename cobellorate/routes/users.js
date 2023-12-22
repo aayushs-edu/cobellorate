@@ -104,7 +104,7 @@ router.post('/login', (req, res) => {
     if (err) {
       console.error('error executing query: ' + err.stack);
       console.log('error executing query');
-      res.render('login');
+      res.render('login', {error: 'SQL Error: ' + err.message});
       return;
     }
     if (result) {
@@ -114,7 +114,7 @@ router.post('/login', (req, res) => {
         req.session.user = user;
         console.log(req.session.user);
         // redirect user to session route
-        res.redirect('../session/dashboard?userId=${user.userID}'); // add userID as paramater to the http query so that we can access it in session
+        res.redirect('../session/dashboard'); // add userID as paramater to the http query so that we can access it in session
       }
       else {
         res.render('login', {error: 'Account does not exist'});

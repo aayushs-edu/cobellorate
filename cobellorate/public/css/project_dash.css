@@ -185,11 +185,17 @@ h3 {
   width: 80%;
   align-items: center;
   flex: 1;
-  text-decoration: underline;
+  flex-basis: 100%;
 }
 
 .file i {
   margin: 5px;
+}
+
+.file a {
+  text-decoration: none;
+  color: white;
+  width: 100%;
 }
 
 input[type=submit] {

@@ -22,7 +22,34 @@ router.get('/dashboard', (req, res) => {
         userId = req.query.userId
         req.session.userId = userId;
         userName = req.session.user; 
-        res.render('dashboard', {session: req.session, userId });
+        const connection = mysql.createConnection({
+            host: servername,
+            user: username,
+            password: password,
+            database: dbname
+        });
+        connection.connect(function (err) {
+            if (err) {
+                console.log('error connection to sql database: ' + err.stack)
+            }
+            console.log('connected to database as id ' + connection.threadId);
+        });
+        // get current session user as owner
+        const owner = req.session.user;
+        // sql query                
+        const scanSQL = `SELECT * FROM projects where owner = '${req.session.username}';`;
+        connection.query(scanSQL, function (err, result) {
+            if (err) {
+                console.error('error executing query: ' + err.message);
+                console.log('error executing query');
+                res.render('new_project');
+                return;
+            }
+            if(result) {
+                console.log(result);
+                res.render('dashboard', {session: req.session, userId, result});
+            }
+        });
     }
 })
 

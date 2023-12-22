@@ -9,7 +9,7 @@
     <!--Font Awesome-->
     <link rel="stylesheet" 
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Dashboard</title>
+    <title>Project Dashboard</title>
 </head>
 <body>
     <div class="sidebar">
@@ -18,7 +18,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
                 <li>
                     <a href="#">
                         <i class="fas fa-sign-in-alt"></i>
-                        <p>Dashboard</p>
+                        <p>Project Dashboard</p>
                     </a>
                 </li>
                 <li>
@@ -62,16 +62,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
             <div class="panel-content">
                 <div class="panel-title">Projects</div>
                 <div class="file-list">
-                    <% 
-                        result.forEach(function(row) {
-                    %>
-                            <div class="file">
-                                <i class="fas fa-file-word"></i>
-                                <a href='../projects/<%= row.projectID %>'><%= row.name %></a>
-                            </div>
-                    <%
-                        })
-                    %>
                     <form action='new_project' method='get'>
                         <input type='submit' value="New Project">
                     </form>

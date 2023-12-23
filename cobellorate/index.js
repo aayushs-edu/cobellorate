@@ -3,18 +3,14 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const cors = require('cors');
-const mysql = require('mysql2');
 const env = require('dotenv').config().parsed;
 const app = express();
 
 const port = 3000;
 
-// ENV VARIABLES
-const servername = env.SQL_SERVER;
-const username = env.SQL_USERNAME;
-const password = env.SQL_PASSWORD;
-const dbname = env.SQL_DB;
-const secret_key = env.SESSION_SECRET;
+//sql connection
+const mysql = require('mysql2');
+const db = require('./sql');
 
 app.use(express.static('public'))
 app.use(express.json())
@@ -23,6 +19,7 @@ app.use(express.urlencoded({
 }));
 
 // session middleware
+const secret_key = env.SESSION_SECRET;
 var sessionMiddleware = session({
     secret: secret_key,
     cookie: { secure:false, maxAge: 1000 * 60 * 60 * 24 },
@@ -75,21 +72,6 @@ app.post('/signup', (req, res) => {
     const email = req.body.email;
     const name = req.body.username;
     const rawPwd = req.body.pwd;
-
-    const connection = mysql.createConnection({
-        host: servername,
-        user: username,
-        password: password,
-        database: dbname
-    });
-    connection.connect(function (err) {
-        if (err) {
-            console.log('error connecting to sql database: ' + err.stack);
-            return;
-        }
-        console.log('connected to database as id ' + connection.threadId); 
-    });
-
     // for hashing the pwd
     function generateRandomHex() {
         const length = 32;
@@ -101,7 +83,7 @@ app.post('/signup', (req, res) => {
     const hashedPwd = crypto.createHash('sha256').update(rawPwd).digest('hex');
     // sql query
     const scanSQL = `SELECT * FROM accounts WHERE username = '${name}'`;
-    connection.query(scanSQL, function (err, res) {
+    db.query(scanSQL, function (err, res) {
         if (err) {
             console.error('error executing query: ' + err.stack);
             res.send('error executing query');
@@ -117,7 +99,7 @@ app.post('/signup', (req, res) => {
   
     //query for creating the new account in the db
     const insertSQL = `INSERT INTO accounts (userID, email, username, password) VALUES ('${hashedUserID}', '${email}', '${name}', '${hashedPwd}')`;
-    connection.query(insertSQL, function (err, res) {
+    db.query(insertSQL, function (err, res) {
       if (err) {
           console.error('error executing query: ' + err.stack);
           res.send('error executing query');
@@ -132,24 +114,11 @@ app.post('/login', (req, res) => {
     const name = req.body.username;
     const rawPwd = req.body.pwd;
 
-    const connection = mysql.createConnection({
-        host: servername,
-        user: username, 
-        password: password, 
-        database: dbname
-    });
-    connection.connect(function (err) {
-        if (err) {
-            console.log('error connecting to sql database: ' + err.stack);
-            return;
-        }
-        console.log('connected to database as id ' + connection.threadId);
-    });
     // hash the pwd
     const hashedPwd = crypto.createHash('sha256').update(rawPwd).digest('hex');
     // sql query
     const scanSQL = `SELECT * FROM accounts WHERE username = '${name}' and password = '${hashedPwd}';`;
-    connection.query(scanSQL, function (err, result) {
+    db.query(scanSQL, function (err, result) {
         if (err) {
             console.error('error executing query: ' + err.stack);
             console.log('error executing query');

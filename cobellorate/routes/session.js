@@ -1,36 +1,22 @@
 const express = require('express');
-const mysql = require('mysql2');
 const crypto = require('crypto');
 const router = express.Router();
 const session = require('express-session')
 const env = require('dotenv').config().parsed;
-const servername = env.SQL_SERVER;
-const username = env.SQL_USERNAME;
-const password = env.SQL_PASSWORD;
-const dbname = env.SQL_DB;
+
+const mysql = require('mysql2');
+const db = require('../sql');
 
 router.get('/dashboard', (req, res) => {
     console.log(req.session.user)
     // check if user session is set
     if (!req.session.authenticated) res.send('Log in first');
     else {
-        const connection = mysql.createConnection({
-            host: servername,
-            user: username,
-            password: password,
-            database: dbname
-        });
-        connection.connect(function (err) {
-            if (err) {
-                console.log('error connection to sql database: ' + err.stack)
-            }
-            console.log('connected to database as id ' + connection.threadId);
-        });
         // get current session user as owner
         const owner = req.session.user;
         // sql query                
         const scanSQL = `SELECT * FROM projects where owner = '${owner}';`;
-        connection.query(scanSQL, function (err, result) {
+        db.query(scanSQL, function (err, result) {
             if (err) {
                 console.error('error executing query: ' + err.message);
                 console.log('error executing query');
@@ -70,24 +56,11 @@ router.post('/new_project', (req, res) => {
     // hash project id
     const rawProjectID = generateRandomHex();
     const hashedProjectID = crypto.createHash('sha256').update(rawProjectID).digest('hex');
-    
-    const connection = mysql.createConnection({
-        host: servername,
-        user: username,
-        password: password,
-        database: dbname
-    });
-    connection.connect(function (err) {
-        if (err) {
-            console.log('error connection to sql database: ' + err.stack)
-        }
-        console.log('connected to database as id ' + connection.threadId);
-    });
     // get current session user as owner
     const owner = req.session.user;
     // sql query                
     const insertSQL = `INSERT INTO projects VALUES ('${hashedProjectID}', '${project_name}', '${project_desc}', '${owner}', 0);`;
-    connection.query(insertSQL, function (err, result) {
+    db.query(insertSQL, function (err, result) {
         if (err) {
             console.error('error executing query: ' + err.message);
             console.log('error executing query');

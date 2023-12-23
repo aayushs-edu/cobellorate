@@ -10,7 +10,7 @@ const password = env.SQL_PASSWORD;
 const dbname = env.SQL_DB;
 
 router.get('/:projectID', (req, res) => {
-    res.render('project_dashboard');
+    res.render('project_dashboard', {session: req.session});
 })
 
 module.exports = router;

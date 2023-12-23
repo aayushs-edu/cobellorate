@@ -22,8 +22,9 @@ body {
 }
 
 .dashboard {
-  margin-left: 13%;
+  margin-left: 2%;
   flex: 1;
+  position: relative;
 }
 
 .container {
@@ -41,7 +42,7 @@ body {
   height: 100vh;
   min-height: 500px;
   width: 60px;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   background-color: #16191e;

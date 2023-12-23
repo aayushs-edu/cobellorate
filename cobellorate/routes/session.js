@@ -8,20 +8,12 @@ const servername = env.SQL_SERVER;
 const username = env.SQL_USERNAME;
 const password = env.SQL_PASSWORD;
 const dbname = env.SQL_DB;
-const sessionSecret = env.SESSION_SECRET
-// session middleware for the router
-router.use(session({
-    secret: sessionSecret,
-    resave: true,
-    saveUninitialized: true
-}));
 
 router.get('/dashboard', (req, res) => {
+    console.log(req.session.user)
     // check if user session is set
-    if (req.session && req.session.user) {
-        userId = req.query.userId
-        req.session.userId = userId;
-        userName = req.session.user; 
+    if (!req.session.authenticated) res.send('Log in first');
+    else {
         const connection = mysql.createConnection({
             host: servername,
             user: username,
@@ -37,7 +29,7 @@ router.get('/dashboard', (req, res) => {
         // get current session user as owner
         const owner = req.session.user;
         // sql query                
-        const scanSQL = `SELECT * FROM projects where owner = '${req.session.username}';`;
+        const scanSQL = `SELECT * FROM projects where owner = '${owner}';`;
         connection.query(scanSQL, function (err, result) {
             if (err) {
                 console.error('error executing query: ' + err.message);
@@ -46,8 +38,7 @@ router.get('/dashboard', (req, res) => {
                 return;
             }
             if(result) {
-                console.log(result);
-                res.render('dashboard', {session: req.session, userId, result});
+                res.render('dashboard', {session: req.session, result});
             }
         });
     }
@@ -55,12 +46,8 @@ router.get('/dashboard', (req, res) => {
 
 // render create project page
 router.get('/new_project', (req, res) => {
-    // check if user session is set
-    console.log(req.session.user);
-    if (req.session && req.session.user) {
-        const userId = req.session.userId //access users id
-        console.log(userId)
-        res.render('new_project', {session: req.session, userId});
+    if (req.session.authenticated) {
+        res.render('new_project');
     }
 })
 
@@ -107,9 +94,9 @@ router.post('/new_project', (req, res) => {
             res.render('new_project');
             return;
         }
-        if(result) {
+        else {
             console.log('new project succesfully added');
-            res.render('dashboard', {session: req.session });
+            res.redirect(303, './dashboard');
         }
     });
 })

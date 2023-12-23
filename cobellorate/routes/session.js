@@ -47,7 +47,7 @@ router.get('/dashboard', (req, res) => {
 // render create project page
 router.get('/new_project', (req, res) => {
     if (req.session.authenticated) {
-        res.render('new_project');
+        res.render('newProject');
     }
 })
 

@@ -21,12 +21,29 @@ body {
 }
 
 input[type=submit] {
-  padding: 6px 110px;
+  padding: 6px 80px;
   text-align: center;
   color: white;
   font-size: 25px;
   background-color: rgb(116,60,124);
   border-color: rgb(116,60,124);
+  border-style: solid;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+input[type=submit]:hover{
+  cursor: pointer;
+  background: transparent;
+}
+
+input[type=submit].cancel {
+  padding: 3px 50px;
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  background-color: rgb(150, 57, 57);
+  border-color: rgb(150, 57, 57);
   border-style: solid;
   border-radius: 15px;
   font-weight: bold;
@@ -48,7 +65,7 @@ input[type=submit]:hover{
   border-bottom: 1px solid #555;
   color: white;
   box-sizing: border-box;
-  font-size: 18px;
+  font-size: 25px;
   padding: 10px 0px;
   position: relative;
   top: 50%;

@@ -6,7 +6,6 @@
     <meta name="description" content="">
     <title>Login</title>
 
-    <link href="/css/login_styles.css" rel="stylesheet">
     <link href="/css/login_form.css" rel="stylesheet">
   </head>
     
@@ -38,13 +37,13 @@
         <h1 class="h3 mb-3 fw-normal" style="color: white; font-size: 40px"><b>Welcome Back</b></h1>
         <pre style="color: red; position: relative;"><%= error %></pre>
         <div class="form-floating">
-            <input class="input" placeholder="Username" id="user" type="text" name="username"></input>
+            <input class="input" placeholder="Username" id="user" type="text" name="username" required></input>
             <span class="underline"></span>
         </div>
             <div class="checkbox mb-3">
             </div>
             <div class="form-floating">
-                <input class="input" placeholder="Password" id="pwd" type="password" name="pwd"></input>
+                <input class="input" placeholder="Password" id="pwd" type="password" name="pwd" required></input>
                 <span class="underline"></span>
             </div>
         <div class="checkbox mb-3">

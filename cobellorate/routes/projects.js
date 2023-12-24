@@ -8,8 +8,8 @@ const env = require('dotenv').config().parsed;
 
 
 router.get('/:projectID', (req, res) => {
-    // if(!req.session.authenticated) res.render('error');
-    // else 
+    if(!req.session.authenticated) res.render('error');
+    else 
         res.render('project_dashboard', {session: req.session});
 })
 

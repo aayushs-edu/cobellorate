@@ -3,6 +3,7 @@ const session = require('express-session');
 const crypto = require('crypto');
 const cors = require('cors');
 const env = require('dotenv').config().parsed;
+const fileUpload = require('express-fileupload');
 const app = express();
 
 const port = 3000;
@@ -28,6 +29,7 @@ var sessionMiddleware = session({
 
 app.use(sessionMiddleware);
 app.use(cors());
+app.use(fileUpload());
 
 app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/js', express.static(__dirname + 'public/js'));
@@ -61,8 +63,7 @@ app.get('/signup', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login', {error: ''});
 })
-  
-  
+
 app.post('/signup', (req, res) => {
     // from the forms
     const email = req.body.email;

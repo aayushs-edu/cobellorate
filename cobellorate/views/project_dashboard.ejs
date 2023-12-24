@@ -62,8 +62,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
             <div class="panel-content">
                 <div class="panel-title">Files</div>
                 <div class="file-list">
-                    <form action='new_project' method='get'>
-                        <input type='submit' value="Add File">
+                    <form method="POST" enctype="multipart/form-data">
+                        <input name="file_upload" id="file_upload" type='file' accept=".pdf, .doc, .docx, .txt">
+                        <input type="submit" value="Upload" />
                     </form>
                 </div>
             </div>

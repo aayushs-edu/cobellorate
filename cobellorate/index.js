@@ -1,6 +1,5 @@
 const express = require('express');
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const cors = require('cors');
 const env = require('dotenv').config().parsed;
@@ -28,7 +27,6 @@ var sessionMiddleware = session({
 })
 
 app.use(sessionMiddleware);
-app.use(cookieParser());
 app.use(cors());
 
 app.use('/css', express.static(__dirname + 'public/css'));
@@ -39,8 +37,6 @@ app.set('views', './views')
 app.set('view engine', 'ejs');
 
 //routers
-const userRoute = require('./routes/users')
-app.use('/users', userRoute);
 
 const sessionRoute = require('./routes/session')
 app.use('/session', sessionMiddleware, sessionRoute);

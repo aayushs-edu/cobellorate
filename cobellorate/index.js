@@ -22,7 +22,7 @@ app.use(express.urlencoded({
 const secret_key = env.SESSION_SECRET;
 var sessionMiddleware = session({
     secret: secret_key,
-    cookie: { secure:false, maxAge: 1000 * 60 * 60 * 24 },
+    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 },
     resave: false,
     saveUninitialized: false
 })

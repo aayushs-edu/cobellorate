@@ -18,7 +18,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
                 <li>
                     <a href="#">
                         <i class="fas fa-sign-in-alt"></i>
-                        <p>Project Dashboard</p>
+                        <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
@@ -55,29 +55,29 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         </nav>
     </div>
     <div class="dashboard">
-        <h1 style="padding-top: 10px">Welcome, <p style="color: rgb(116,60,124); display:inline"><%= session.user.username %></p></h1>
-        <h3>Dashboard</h3>
+        <h1 style="padding-top: 10px">Project-Name</h1>
+        <h3>Project Dashboard</h3>
         <br>
         <div class="panel">
             <div class="panel-content">
-                <div class="panel-title">Projects</div>
+                <div class="panel-title">Files</div>
                 <div class="file-list">
                     <form action='new_project' method='get'>
-                        <input type='submit' value="New Project">
+                        <input type='submit' value="Add File">
                     </form>
                 </div>
             </div>
         </div>
         <div class="feed">
             <div class="feed-content">
-                <div class="panel-title">Feed</div>
+                <div class="panel-title">Recent Changes</div>
                 <div class="widget">Change 1</div>
                 <div class="widget">Change 2</div>
             </div>
         </div>
         <div class="panel">
             <div class="panel-content">
-                <div class="panel-title">Friends</div>
+                <div class="panel-title">Collaborators</div>
                 <br>
                 <div class="user-list">
                     <span class="user">

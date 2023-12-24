@@ -10,7 +10,7 @@ const db = require('../sql');
 router.get('/dashboard', (req, res) => {
     console.log(req.session.user)
     // check if user session is set
-    if (!req.session.authenticated) res.send('Log in first');
+    if (!req.session.authenticated) res.render('error');
     else {
         // get current session user as owner
         const owner = req.session.user;
@@ -32,9 +32,8 @@ router.get('/dashboard', (req, res) => {
 
 // render create project page
 router.get('/new_project', (req, res) => {
-    if (req.session.authenticated) {
-        res.render('newProject');
-    }
+    if (!req.session.authenticated) res.render('error');
+    else res.render('newProject');   
 })
 
 // render file upload page

@@ -17,23 +17,33 @@ function generateRandomHex() {
 }
 
 // multer config
-//const upload = multer({ dest: ':/projectID', storage: storage});
-//const upload = multer({ storage: multer.memoryStorage() })
+
 
 router.get('/:projectID', (req, res) => {
     // if(!req.session.authenticated) res.render('error');
-    // else 
-        res.render('project_dashboard', {session: req.session});
+    // else
+    const scanSQL = `SELECT * from files WHERE projectID = '${req.params.projectID}'`
+    db.query(scanSQL, function (err, result) {
+        if (err) {
+            console.error('error executing query: ' + err.message);
+            console.log('error executing query');
+            return;
+        }
+        if (result) {
+            console.log(Buffer.from(result[0].fileContent).toString("base64"));
+            
+            res.render('project_dashboard', {session: req.session, result});
+        }
+    });
 })
 router.post('/:projectID', (req, res) => {
-    let fileContent = req.files.file_upload
-    console.log(fileContent.data)
+    let file = req.files.file_upload;
     const rawID = generateRandomHex();
     const fileID = crypto.createHash('sha256').update(rawID).digest('hex');
     const projectID = req.params.projectID;
-    const fileName = fileContent.name;
+    const fileName = file.name;
     const insertSQL = `INSERT INTO files VALUES (?, ?, ?, ?);`;
-    db.query(insertSQL, [fileID, fileName, fileContent.data.toString(), projectID], function (err, result) {
+    db.query(insertSQL, [fileID, fileName, file.data, projectID], function (err, result) {
         if (err) {
             console.error('error executing query: ' + err.message);
             console.log('error executing query');
@@ -44,5 +54,6 @@ router.post('/:projectID', (req, res) => {
             console.log('file upload succesful')
         }
     });
+
 })
 module.exports = router;

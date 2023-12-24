@@ -62,9 +62,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
             <div class="panel-content">
                 <strong><p class="panel-title">Files</p></strong>
                 <div class="file-list">
+                    <% 
+                        result.forEach(function(row) {
+                    %>
+                            <div class="file">
+                                <i class="fas fa-file-word"></i>
+                                <a download="<%= row.fileName %>" href="data:text/plain;base64,<%= Buffer.from(row.fileContent).toString('base64') %>"> <%= row.fileName %></a>                            
+                            </div>
+                    <%
+                        })
+                    %>
                     <form method="POST" enctype="multipart/form-data">
                         <input name="file_upload" id="file_upload" type='file' accept=".pdf, .doc, .docx, .txt">
-                        <input type="submit" value="Upload" />
+                        <input type="submit" value="Add File" />
                     </form>
                 </div>
             </div>
@@ -107,7 +117,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         <div class="feed">
             <div class="feed-content">
                 <strong><p class="panel-title">Tasks</p></strong>
-                <div class="widget">Task 1<p>Assigned to: </p><i class="fas fa-circle-user"></i></div>
+                <div class="widget">Task 1<i class="fas fa-circle-user"></i></div>
                 <div class="widget">Task 2<i class="fas fa-circle-user"></i></div>
             </div>
         </div>
